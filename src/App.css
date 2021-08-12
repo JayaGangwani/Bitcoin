@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.display{
+  background-color: black;
+  color: grey;
+  height: 15%;
+  width: 40%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.leftPanel{
+    width: 50%;
+    display:flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rightPanel{    
+    width: 50%;
+    flex-direction: column;
+    
 }
+
+ .elemposition{
+  display: flex;
+  flex-direction: column-reverse;
+  column-gap: 20px;
+  justify-content: space-between;
+  
+ }
+
+ .image{
+   height: 25px;
+ }
+
+ .left-image{
+   position: absolute;
+   width:15%;
+   height: 100px
+  
+ }
+
+ .ticker-info{ 
+   margin: 10px 10px 10px 10px;
+ }
+
+ .right-elements{
+   width:40%;
+   height: 100px
+   
+ }
+
+.margin-icon{
+  margin:30px 10px 30px 10px;
+}
+
+
+  
+  table {
+    font-family: "Fraunces", serif;
+    font-size: 100%;
+    white-space: nowrap;
+    margin: 0;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 20px;
+    table-layout: fixed;
+    border: 1px solid black;
+    background-color: black;
+  }
+
+  th{
+    color : grey;
+  }
+
+  td{
+    color : white
+  }
+
+  .navbar:hover{
+    background-color: #ddd;
+    
+  }
+
+  .navbar{
+    border: 1px solid grey;
+    width: 267px ;
+    background-color: black;
+    text-align: right
+  }
+  
+  .nav-link {
+  margin: 5px 5px 5px 5px;
+  text-decoration: none;
+  }
