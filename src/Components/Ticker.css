@@ -2,7 +2,7 @@
     text-align: right;
 }
 
-.display{
+.display-ticker{
     background-color: black;
     color: grey;
     height: 15%;
@@ -11,44 +11,18 @@
   
   }
   
-  .leftPanel{
+  .left-col{
       width: 50%;
       display:flex;
   }
   
-  .rightPanel{    
+  .right-col{    
       width: 50%;
       flex-direction: column;
-      
-  }
+      }
   
-   .elemposition{
-    display: flex;
-    flex-direction: column-reverse;
-    column-gap: 20px;
-    justify-content: space-between;
-    
-   }
-  
-   .image{
-     height: 25px;
-   }
-  
-   .left-image{
-     position: absolute;
-     width:15%;
-     height: 100px
-    
-   }
-  
-   .ticker-info{ 
+  .ticker-info{ 
      margin: 10px 10px 10px 10px;
-   }
-  
-   .right-elements{
-     width:40%;
-     height: 100px
-     
    }
   
   .margin-icon{

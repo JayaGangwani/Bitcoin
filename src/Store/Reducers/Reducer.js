@@ -1,23 +1,20 @@
 const initialState = {
-    tickerObj: { },
+    tickerObj: {},
     orderBook: []
-    
+
 }
 
-export default function (state=initialState, action) {
+export default function (state = initialState, action) {
     console.log(action.type);
-    switch (action.type){
-    case "ADD_TICKER":
-        return {...state, tickerObj : action.payload};
-    case "Display_Order_Book":
-    
-        let newData = [...state.orderBook];
-        newData.push(action.payload);
-        newData = newData.slice(-10);
-        return  {...state, orderBook :[...newData] }
-        
-        
-    default:
-        return state;
+    switch (action.type) {
+        case "ADD_TICKER":
+            return { ...state, tickerObj: action.payload };
+        case "Display_Order_Book":
+            let orderData = [...state.orderBook];
+            orderData.push(action.payload);
+            orderData = orderData.slice(-10);
+            return { ...state, orderBook: [...orderData] }
+        default:
+            return state;
     }
 }

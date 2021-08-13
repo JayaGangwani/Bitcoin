@@ -6,20 +6,18 @@ import OrderBook from './Components/OrderBook';
 function App() {
   return (
     <>
-    <Router>
-      <span class="nav-link"><Link to="/OrderBook">OrderBook</Link></span>
-      <span class="nav-link"><Link to="/Ticker">Ticker</Link></span>
-      
-
-      <Switch>
-      <Route exact path="/Ticker">
-     <Ticker></Ticker>
-     </Route>
-     <Route exact path="/OrderBook">
-     <OrderBook></OrderBook>
-     </Route>
-     </Switch>
-     </Router>
+      <Router>
+        <span class="nav-link"><Link to="/OrderBook">OrderBook</Link></span>
+        <span class="nav-link"><Link to="/Ticker">Ticker</Link></span>
+        <Switch>
+          <Route exact path="/Ticker">
+            <Ticker></Ticker>
+          </Route>
+          <Route exact path="/OrderBook">
+            <OrderBook></OrderBook>
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

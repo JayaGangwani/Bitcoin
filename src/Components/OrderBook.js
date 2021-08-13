@@ -1,34 +1,28 @@
 import { useState, useEffect, useRef } from 'react'
 import { displayOrderBook } from '../Store/Actions/Action';
 import { connect } from 'react-redux';
+import "./OrderBook.css";
 
 
 function OrderBook(props) {
     const [isPaused, setPause] = useState(false);
-
-    var [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
     const ws = useRef(null);
-    console.log(props.orderBook);
 
     useEffect(() => {
-
         ws.current = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
         let prescion = "P".concat(count);
         ws.current.onopen = ('message', () => {
-
-            console.log(prescion);
             if (ws.current.readyState == 1) {
                 ws.current.send(JSON.stringify({
                     event: 'subscribe',
                     channel: 'Book',
                     symbol: 'tBTCUSD',
                     prec: prescion
-
-                }))
+                }));
             }
-        })
-
-    })
+        });
+    });
 
     useEffect(() => {
         if (ws.current != null && ws.current.readyState == 1) {
@@ -46,7 +40,7 @@ function OrderBook(props) {
                 }
             }
         }
-    }, [isPaused])
+    }, [isPaused]);
 
     function increasePrescion() {
         setCount(count + 1);
@@ -54,18 +48,17 @@ function OrderBook(props) {
 
     function decreasePrescion() {
         setCount(count - 1);
-
     }
 
     return (
-        <div>
+        <>
             <div class="navbar">
                 <span><input type='button' title="increase prescion" onClick={() => increasePrescion()} value='+'></input></span>
-                <span><input type='button' title="decrease prescion" value='-' onClick={() => decreasePrescion()}></input></span>
+                <span><input type='button' title="decrease prescion" onClick={() => decreasePrescion()} value='-'></input></span>
             </div>
-            <table bordered>
+            <table>
                 <tr>
-                    <th >COUNT</th>
+                    <th>COUNT</th>
                     <th>AMOUNT</th>
                     <th>PRICE</th>
                 </tr>
@@ -81,9 +74,7 @@ function OrderBook(props) {
             <button onClick={() => setPause(!isPaused)}>
                 {isPaused ? "Connected" : "Disconnected"}
             </button>
-        </div >
-
-
+        </>
     )
 }
 const mapDispatchToProps = {
@@ -91,7 +82,5 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({ orderBook: state.orderBook });
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderBook);
