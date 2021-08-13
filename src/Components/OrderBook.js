@@ -8,6 +8,7 @@ function OrderBook(props) {
     const [isPaused, setPause] = useState(false);
     const [count, setCount] = useState(0);
     const ws = useRef(null);
+    const tableConfig = [{ startIndex: 0, endIndex: 5 }, { startIndex: 5, endIndex: 10 }];
 
     useEffect(() => {
         ws.current = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
@@ -37,6 +38,7 @@ function OrderBook(props) {
                     obj["count"] = COUNT;
                     obj["amount"] = AMOUNT;
                     props.displayOrderBook(obj);
+
                 }
             }
         }
@@ -56,24 +58,30 @@ function OrderBook(props) {
                 <span><input type='button' title="increase prescion" onClick={() => increasePrescion()} value='+'></input></span>
                 <span><input type='button' title="decrease prescion" onClick={() => decreasePrescion()} value='-'></input></span>
             </div>
-            <table>
-                <tr>
-                    <th>COUNT</th>
-                    <th>AMOUNT</th>
-                    <th>PRICE</th>
-                </tr>
-                {props.orderBook.map((order, keyIndex) =>
-                (
-                    <tr key={keyIndex}>
-                        <td>{order.count}</td>
-                        <td>{order.amount}</td>
-                        <td>{order.price}</td>
-                    </tr>
+            <div class="table-display">
+                {tableConfig.map((config) => (
+                    <table>
+                        <tr>
+                            <th>COUNT</th>
+                            <th>AMOUNT</th>
+                            <th>PRICE</th>
+                        </tr>
+                        {props.orderBook.slice(config.startIndex, config.endIndex).map((order, keyIndex) =>
+                        (
+                            <tr key={keyIndex}>
+                                <td>{order.count}</td>
+                                <td>{order.amount}</td>
+                                <td>{order.price}</td>
+                            </tr>
+                        ))}
+                    </table>
                 ))}
-            </table>
-            <button onClick={() => setPause(!isPaused)}>
-                {isPaused ? "Connected" : "Disconnected"}
-            </button>
+            </div>
+            <div>
+                <button onClick={() => setPause(!isPaused)}>
+                    {isPaused ? "Connected" : "Disconnected"}
+                </button>
+            </div>
         </>
     )
 }
